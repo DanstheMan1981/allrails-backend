@@ -4,10 +4,10 @@
   "private": true,
   "description": "AllRails API — NestJS + TypeScript + PostgreSQL/Prisma",
   "scripts": {
-    "build": "nest build",
+    "build": "prisma generate && nest build",
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "start:prod": "node dist/src/main.js",
+    "start:prod": "node dist/main.js",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "prisma:generate": "prisma generate",
