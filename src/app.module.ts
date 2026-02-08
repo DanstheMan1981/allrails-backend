@@ -4,6 +4,9 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
+import { PaymentMethodModule } from './payment-method/payment-method.module';
+import { PageModule } from './page/page.module';
 import { HealthController } from './health.controller';
 
 @Module({
@@ -12,6 +15,9 @@ import { HealthController } from './health.controller';
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
     PrismaModule,
     AuthModule,
+    ProfileModule,
+    PaymentMethodModule,
+    PageModule,
   ],
   controllers: [HealthController],
   providers: [
