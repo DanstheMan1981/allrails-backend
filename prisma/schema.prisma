@@ -15,4 +15,36 @@ model User {
   role      String   @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  profile        Profile?
+  paymentMethods PaymentMethod[]
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  username    String   @unique // URL slug: allrails.app/username
+  displayName String?
+  avatar      String?
+  bio         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PaymentMethod {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // venmo, cashapp, zelle, paypal, crypto, etc.
+  label     String?  // custom display label
+  handle    String   // username, address, or link
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
