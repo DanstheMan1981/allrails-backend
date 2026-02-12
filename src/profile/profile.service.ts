@@ -7,7 +7,7 @@ export class ProfileService {
   constructor(private prisma: PrismaService) {}
 
   async getMyProfile(userId: string) {
-    return this.prisma.profile.findUnique({ where: { userId } });
+    return (await this.prisma.profile.findUnique({ where: { userId } })) ?? {};
   }
 
   async upsertProfile(userId: string, dto: UpsertProfileDto) {
